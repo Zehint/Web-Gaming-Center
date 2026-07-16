@@ -1,10 +1,10 @@
-// Gaming Center - Futurist Cyber-HUD Interactive Script
+// Gaming Center - Brutalist Interactive Script
 
 // Cases Portfolio Database
 const eventDatabase = {
   cocacola: {
     title: "Coca-Cola",
-    client: "COCA-COLA // VR & ESPORTS",
+    client: "Coca-Cola / Torneo & Arte",
     desc: "Desplegamos una experiencia inmersiva de Graffiti en Realidad Virtual donde los asistentes crearon arte digital que luego imprimimos físicamente al instante como stickers y posters. Complementamos la activación con la renta e instalación de un set completo de cómputo de alto rendimiento para el torneo oficial de eSports del evento.",
     tags: ["Realidad Virtual", "Graffiti VR", "Impresión en Vivo", "Torneo eSports", "Renta de Equipo"],
     images: [
@@ -16,7 +16,7 @@ const eventDatabase = {
   },
   doritos: {
     title: "Doritos",
-    client: "DORITOS // BRANDED VR ARCHITECTURE",
+    client: "Doritos / Experiencias VR",
     desc: "Diseñamos y programamos dos experiencias en Realidad Virtual personalizadas con los assets gráficos y branding de Doritos: 1) Simulación de Skysurfing, donde los participantes volaban a través de checkpoints de Doritos hasta llegar al campamento principal. 2) Richie's Plank Walk, recreando una viga de acero suspendida a 80 pisos de altura donde el reto era caminar al vacío, agarrar una bolsa de Doritos y regresar a salvo al ascensor.",
     tags: ["Desarrollo VR", "Branding a Medida", "Simuladores", "Experiencia Extrema"],
     images: [
@@ -26,7 +26,7 @@ const eventDatabase = {
   },
   takisedc: {
     title: "Takis EDC",
-    client: "TAKIS // EDC FULL-BODY DANCE",
+    client: "Takis / EDC Festival",
     desc: "Instalamos una espectacular cabina interactiva de baile en el festival EDC, integrando tecnología de tracking corporal completo (full body tracking). Los participantes bailaban al ritmo del juego y veían su avatar 3D en tiempo real vistiendo la marca Takis. También implementamos Graffiti VR e impresión instantánea de stickers memorables.",
     tags: ["Full Body Tracking", "Graffiti VR", "Edición de Stickers", "Activación Musical"],
     images: [
@@ -39,7 +39,7 @@ const eventDatabase = {
   },
   ccxp: {
     title: "CCXP México",
-    client: "CCXP // MASSIVE VR PROVISION",
+    client: "CCXP / Renta VR",
     desc: "Operamos un stand masivo de Realidad Virtual para miles de fanáticos del entretenimiento en la CCXP. Proveímos lentes de Realidad Virtual autónomos con contenido de entretenimiento preconfigurado y staff técnico especializado para gestionar las filas de espera rápidas, garantizando una rotación constante y óptimo cuidado sanitario del equipo.",
     tags: ["Renta de Lentes VR", "Soporte Técnico", "Gestión de Filas", "Masivo"],
     images: [
@@ -50,7 +50,7 @@ const eventDatabase = {
   },
   f1nascar: {
     title: "F1 & NASCAR",
-    client: "F1 - NASCAR // DIRECT DRIVE RACING",
+    client: "F1 - Nascar / Racing Simulators",
     desc: "Instalamos cockpits de carreras profesionales equipados con volantes de torque directo, pedales hidráulicos y pantallas curvas Ultra-Wide. Los simuladores corrían circuitos oficiales con el branding de los patrocinadores integrados dentro del propio juego, ofreciendo a los entusiastas de la velocidad la experiencia más realista posible de conducir un monoplaza.",
     tags: ["Simuladores de Carreras", "Volantes Direct Drive", "Branding In-Game", "Competición"],
     images: [
@@ -59,7 +59,7 @@ const eventDatabase = {
   },
   halo: {
     title: "Halo Championship",
-    client: "HALO // eSPORTS LAN & TELEMETRY",
+    client: "Halo Championship / LAN & Broadcast",
     desc: "Llevamos a cabo la producción técnica y de red para uno de los torneos competitivos de eSports más grandes del año. Diseñamos elementos gráficos animados de transición de escenas y desarrollamos un switch inteligente de transmisiones en tiempo real de la cámara de los jugadores. Garantizamos una infraestructura LAN estructurada con fibra óptica local interna, logrando latencia de 0 ms entre competidores.",
     tags: ["Redes Estructuradas", "Broadcast eSports", "Switcher Inteligente", "Transiciones en Vivo"],
     images: [
@@ -70,7 +70,7 @@ const eventDatabase = {
   },
   liverpool: {
     title: "Liverpool",
-    client: "LIVERPOOL // IN-STORE HUD RETAIL",
+    client: "Liverpool / Activaciones en Tienda",
     desc: "Configuramos múltiples islas interactivas de videojuegos en tiendas departamentales de Liverpool de todo el país. La activación incluyó la renta e instalación de pantallas UHD, consolas de última generación (PS5/Xbox Series), mobiliario gamer a medida y embajadores de marca que coordinaban retos rápidos 'Torneos Flash' para atraer y enganchar a clientes potenciales.",
     tags: ["Activación Departamental", "Consolas eSports", "Torneo Flash", "Retención de Clientes"],
     images: [
@@ -87,7 +87,7 @@ let currentEventKey = "";
 let currentImgIndex = 0;
 
 // Elements DOM
-const modal = document.getElementById("hudModal");
+const modal = document.getElementById("galleryModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalDesc = document.getElementById("modalDesc");
 const modalTags = document.getElementById("modalTags");
@@ -119,7 +119,7 @@ function openGalleryModal(key) {
   modalTags.innerHTML = "";
   data.tags.forEach(tag => {
     const span = document.createElement("span");
-    span.className = "case-tag-hud";
+    span.className = "portfolio-tag";
     span.textContent = tag;
     modalTags.appendChild(span);
   });
@@ -132,7 +132,7 @@ function openGalleryModal(key) {
   data.images.forEach((imgSrc, idx) => {
     const img = document.createElement("img");
     img.src = imgSrc;
-    img.className = `hud-thumb ${idx === 0 ? "active" : ""}`;
+    img.className = `modal-thumb ${idx === 0 ? "active" : ""}`;
     img.alt = `Thumbnail ${idx + 1}`;
     img.addEventListener("click", () => {
       currentImgIndex = idx;
@@ -150,7 +150,7 @@ function updateModalImage() {
   modalImg.src = images[currentImgIndex];
   
   // Update thumb highlight
-  const thumbs = modalThumbs.querySelectorAll(".hud-thumb");
+  const thumbs = modalThumbs.querySelectorAll(".modal-thumb");
   thumbs.forEach((thumb, idx) => {
     if (idx === currentImgIndex) {
       thumb.classList.add("active");
@@ -227,11 +227,12 @@ if (contactForm) {
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     
+    // Get form values
     const name = document.getElementById("formName").value;
     const email = document.getElementById("formEmail").value;
     
     // Simulate send
-    showToast(`ENLACE ESTABLECIDO // Propuesta recibida de ${name}. Confirmación enviada a: ${email}`);
+    showToast(`¡Gracias ${name}! Hemos recibido tu solicitud de cotización. Nos pondremos en contacto al correo: ${email}`);
     
     // Reset Form
     contactForm.reset();
